@@ -1,0 +1,380 @@
+@import url("../fonts/league-gothic/stylesheet.css");
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700");
+@import url("http://fonts.googleapis.com/css?family=Source+Code+Pro:300");
+
+/* Border Box {{{ */
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+/* }}} */
+
+/* Typographie {{{ */
+
+@import url("../yaml/screen/typography.css");
+
+h1, h2, h3, h4, h5, h6 {
+	font-family:'Source Code Pro','courier new',courier;
+  font-weight:300;
+  text-transform:uppercase;
+  letter-spacing:0.025em;
+  color:#39bce7;
+}
+
+.ym-hlist ul li {
+  font-family:'League Gothic',impact,sans-serif;
+  font-size: 2.5em;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+.ym-hlist ul li a {
+  color:black;
+  text-decoration:none;
+}
+
+.ym-hlist ul li a:hover {
+  background:#f0f0f0;
+}
+
+.ym-hlist ul li a:active {
+  color:#46af6e;
+}
+
+.address {
+  margin-top:2em;
+}
+
+.address p {
+  font-family:'Source Code Pro';
+  font-weight:300;
+  text-transform:uppercase;
+  margin-bottom:1em;
+}
+.content p {
+	font-family:'Open Sans';
+  font-weight:300;
+}
+
+.content h4 {
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+.content h4:first-child {
+  margin-top:0;
+}
+
+.content p b {
+  font-weight:600;
+}
+
+.content p b::before {
+  content:"\A";
+  white-space:pre;
+}
+
+/* }}} */
+
+/* L A Y O U T {{{ */
+
+.ym-wrapper {
+	width:1000px;
+  margin:0 auto;
+}
+
+.ym-g24 { /* custom grid column, 24% */
+  width:24%;
+}
+
+.ym-g16 { /* custom grid column, 16% */
+  width:16%;
+}
+
+/* seemingly there  are two ways to have columns stretch all the way down to the border of the screen:
+ * 1. flexbox everything OR
+ * 2. flexbox .ymwrapper and syncHeight with content-col (current approach)
+ */
+
+html, body {
+  height:100%;
+}
+
+.ym-wrapper {
+  min-height:100%;
+  display:-webkit-flex;
+  /* display:-webkit-box; */
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+  flex-direction:row;
+  align-items:stretch;
+}
+
+.ubergrid {
+  align-self:stretch;
+  display:-webkit-flex;
+  /* display:-webkit-box; */
+  display:-moz-box;
+  display:-ms-flexbox;
+  display:flex;
+}
+
+/* }}} */
+
+/* Background colors, styling {{{ */
+
+.left-col { /* outermost column on left side, containing empty column and logo/address containing column */
+  padding-left:2em;
+	background-image:url(../img/background-left.svg);
+  background-position:right top;
+  background-repeat:repeat-y;
+  box-shadow:inset -15px 0 9px -12px #666;
+  -webkit-box-shadow:inset -15px 0 15px -12px #666;
+  moz-box-shadow:inset -15px 0 9px -12px #666;
+}
+
+.right-col-empty { /* empty column next to content */
+	background-image:url(../img/background-right.svg);
+  background-position:right top;
+  background-repeat:repeat-y;
+  box-shadow:inset 15px 0 9px -12px #666;
+  -webkit-box-shadow:inset 15px 0 9px -12px #666;
+  moz-box-shadow:inset 15px 0 9px -12px #666;
+}
+
+.content-col {
+  padding:0 2em 2em 1em;
+	background:#F0F0F0;
+  background-image:url(../img/paper_fibers.png);
+}
+
+/* }}} */
+
+/* Navigation {{{ */
+
+.ym-hlist ul {
+  margin-top:1.2em;
+  margin-left:0; /* corrects Setting in yaml/core/base.css Line 166 */
+}
+
+.ym-hlist ul li {
+  display:inline;
+  margin-left:0; /* corrects Setting in yaml/core/base.css Line 170 */
+  margin-right:1em;
+} 
+
+.ym-hlist ul li a:hover {
+  color:#46af6e;
+}
+/* }}} */
+
+/* SVG LOGO {{{ */
+
+.logo {
+	margin-top:1.5em;
+}
+
+#svg_logo {
+  height:8.838em;
+  width:9.375em;
+}
+
+path {fill:#010202;} 
+
+polygon.blue {fill:#009BD9;}
+polygon.green {fill:#49B170;}
+polygon.orange {fill:#F7A823;}
+
+/* }}} */
+
+ /* The 36th Chamber {{{ */
+
+#hamburger { /* hide hamburger icon by default */
+  display:none;
+}
+
+/* }}} */
+
+/* Media Queries {{{ */
+
+/* Smartphones  */
+
+/* portrait and landscape */
+@media only screen and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  body {
+    font-size:2em;
+    overflow-x:hidden; /* prevent scrolling when hamburger deploys*/
+  }
+
+  .ym-wrapper,
+  .ym-grid {
+    width:100% !important;
+    display:block;
+    padding:0;
+    margin:0;
+  }
+
+  .ym-gl,
+  .ym-gr {
+    float: none;
+    display: block;
+  }
+
+  .left-col,
+  .content-col {
+    width:100% !important; /* Beware! might set a wrong width to the drawer menu! */
+    padding:0;
+    margin:0;
+  }
+
+  .address,
+  .right-col-empty {
+    display: none;
+  }
+
+  .left-col {
+    display:block;
+    position: fixed;
+    z-index:6;
+    height:4.5em; /* Beware! (see above) */
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    background:#000000;
+    background-image:none;
+  }
+
+  .logo {
+    float: right;
+    margin:0.5em 1em 0 0;
+  }
+
+  #svg_logo {
+    float:right;
+    height:40%;
+    width:40%;
+  }
+  
+  #svg_logo path {fill:white;}
+
+  .content {
+    font-size: 1.3em;
+    padding:4.5em 2em 1em 0.5em; 
+    background:#F0F0F0;
+    
+    /* Menu Kebab Styles */
+    position:relative; /* seemingly neccessary to make z-index work ?really? */
+    z-index:5; /* make sure content lies above drawer menu and hides it. */
+    /* also, some mixins for easy animation, might need to enable scss/compass later */
+    display:block;
+  }
+
+  nav {
+    background:#bada55;
+    /* Menu Kebab Styles */
+    width:100%; /* if this doesn't work, see above, for width and height settings for .left-col, at this time at 232 and 245 */ 
+    height:100%;
+    position:fixed;
+    z-index:1;
+    padding:0 1em; /* verify this at a later stage */
+  }
+
+  nav ul { /* Menu Kebab Styles */
+    display:block;
+    float:left;
+    width:100%;
+    line-height:2em; /* verify this at a later stage */
+  }
+
+  nav ul li { /* Menu Kebab Styles */
+    display:block;
+    float:left;
+    width:100%;
+  }
+
+  nav ul li a { /* Menu Kebab Styles */
+    display:block;
+    float:left;
+    width:100%;
+  }
+
+  body.nav-expanded .content-col { /* Menu Kebab Styles */
+    left: 75%;
+  }
+
+  body.nav-expanded #hamburger-icon { /* Menu Kebab Styles */
+    left: 75%;
+  }
+
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+  /* TODO: paste viewport snippet into header? and make topbar visible, somehow it's hidden ????? */
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+ /* ****** */ 
+
+  /* Menu Kebab  */
+
+  #hamburger {
+    cursor: pointer;
+    display: block;
+    height: 3em;
+    padding: 0.375em 0.5em 0.375em;
+    margin: 0.75em 0 0 0.5em;
+    position: relative;
+    width:3em;
+    background: #000000;
+  }
+
+    /* The white stripes in the hamburger button */
+
+    #hamburger div {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 0.25em 0.25em 0.25em 0.25em;
+      height: 0.25em;
+      margin-top: 0.375em;
+      width: 90%;
+    }
+}
+
+
+/*  landscape  */
+@media only screen and (min-width : 321px) { }
+
+/*  portrait */
+@media only screen and (max-width : 320px) { }
+
+/* iPhone 4 and high pixel devices  */
+@media only screen
+and (min-device-width:320px)
+and (max-device-width:480px)
+and (-webkit-device-pixel-ratio:2)
+and (device-aspect-ratio:2/3) {} 
+
+/* iPad */
+
+/* portrait and landscape */
+@media only screen and (min-device-width : 768px) 
+and (max-device-width : 1024px) {}
+
+/* landscape */
+@media only screen and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {}
+
+/* portrait */
+@media only screen and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {}
+
+/* }}} */
