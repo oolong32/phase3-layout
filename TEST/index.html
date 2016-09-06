@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Flex Test</title>
+    <style>
+      html,
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+        height: 100%;
+        display: flex; /*without this, it dosn't wor in IE11*/
+        justify-content: center;
+      }
+      .wrapper {
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        flex-direction: row;
+      }
+      .column {
+       padding: 1em;
+       border: 1px solid #c9c9c9;
+       display: flex; 
+      }
+      .col-1 {
+        background: #f3ffff;
+      }
+      .col-2 {
+        background: #fff3ff;
+      }
+      .col-3 {
+        background: #fffff3;
+      }
+    </style>
+  </head>
+
+  <body>
+
+  <div class="wrapper">
+    <div class="column col-1"><p>a</p></div>
+    <div class="column col-2"><p>b</p></div>
+    <div class="column col-3"><p>f</p></div>
+  </div>
+
+  </body>
+
+</html>
